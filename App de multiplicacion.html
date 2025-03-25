@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Tablas de Multiplicar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100px;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .feedback {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Juego de Tablas de Multiplicar</h1>
+        <p class="question" id="question"></p>
+        <input type="number" id="answer" placeholder="Tu respuesta">
+        <button onclick="checkAnswer()">Comprobar</button>
+        <p class="feedback" id="feedback"></p>
+    </div>
+
+    <script>
+        let num1, num2, correctAnswer;
+
+        function generateQuestion() {
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = num1 * num2;
+            document.getElementById("question").textContent = `¿Cuánto es ${num1} × ${num2}? 🐶🐱`;
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("answer").value = "";
+        }
+
+        function checkAnswer() {
+            let userAnswer = parseInt(document.getElementById("answer").value);
+            let feedback = document.getElementById("feedback");
+            
+            if (userAnswer === correctAnswer) {
+                feedback.textContent = "¡Correcto! 🎉🐸";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Intenta de nuevo 😿";
+                feedback.style.color = "red";
+            }
+
+            setTimeout(generateQuestion, 2000);
+        }
+
+        generateQuestion();
+    </script>
+</body>
+</html>
